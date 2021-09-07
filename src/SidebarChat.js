@@ -12,7 +12,6 @@ function SidebarChat({id,name}) {
             <Avatar/>
             <div className="sidebarChat_info">
                 <h2>{name}</h2>
-            
             </div>
             
         </div>

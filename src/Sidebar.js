@@ -14,18 +14,20 @@ import { collection, onSnapshot } from "firebase/firestore";
 function Sidebar() {
     const [rooms, setrooms] = useState([]);
     useEffect(() => {
-        database.collection("rooms").onSnapshot(snapshot =>(
+        const unsubsctibe = database.collection("rooms").onSnapshot((snapshot) =>
             setrooms(
                 snapshot.docs.map((doc) => ({
                     id: doc.id,
                     data: doc.data(),
                 }))
-            ))
-            
+            )
         );
 
-       
+        return () => {
+            unsubsctibe();
+        };
     }, []);
+
     
     console.log({rooms})
 
